@@ -923,10 +923,10 @@ static std::string getNormalizedDirName(
 }
 
 static std::string getBlockchainDir() {
-    auto path = getenv("BLOCKCHAIN_DIR");
+    auto full = getenv("BLOCKCHAIN_FULL_DIR");
 
-    if (path != 0)
-        return getNormalizedDirName(path);
+    if (full != 0)
+        return getNormalizedDirName(full);
 
     auto dir = getenv("BLOCKCHAIN_DIR");
     if(0==dir) {
