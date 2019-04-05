@@ -923,13 +923,19 @@ static std::string getNormalizedDirName(
 }
 
 static std::string getBlockchainDir() {
+    auto path = getenv("BLOCKCHAIN_DIR");
+
+    if (path != 0)
+        return getNormalizedDirName(path);
+
     auto dir = getenv("BLOCKCHAIN_DIR");
     if(0==dir) {
         dir = getenv("HOME");
         if(0==dir) {
-            errFatal("please  specify either env. variable HOME or BLOCKCHAIN_DIR");
+            errFatal("please specify either env. variable HOME or BLOCKCHAIN_DIR");
         }
     }
+
     return getNormalizedDirName(
         dir              +
         std::string("/") +
